@@ -35,7 +35,8 @@ public_tweets = api.search('Trump')
 '''
 
 with open('sentiment_polarity.csv', 'w') as csvfile:
-	polaritywriter = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+	polaritywriter = csv.writer(csvfile, delimiter=',',quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+        polaritywriter.writerow( ('Tweet', 'Sentiment') )
 	for tweet in public_tweets:
 	    print(tweet.text)
 	     
@@ -43,7 +44,7 @@ with open('sentiment_polarity.csv', 'w') as csvfile:
 	    #Step 4 Perform Sentiment Analysis on Tweets
 	    analysis = TextBlob(tweet.text)
 	    if(threshold<analysis.sentiment[0] and 0.5<analysis.sentiment[1]):
-		    polaritywriter.writerow([tweet.text.replace("\"", "'").replace("\n", " ").encode("utf-8"), "Positive"])
+		    polaritywriter.writerow(["\""+tweet.text.replace("\"", "'").replace("\n", " ").encode("utf-8")+"\"", "Positive"])
 	    else:
-		    polaritywriter.writerow([tweet.text.replace("\"", "'").replace("\n", " ").encode("utf-8"), "Negative"])	
+		    polaritywriter.writerow(["\""+tweet.text.replace("\"", "'").replace("\n", " ").encode("utf-8")+"\"", "Negative"])	
     
