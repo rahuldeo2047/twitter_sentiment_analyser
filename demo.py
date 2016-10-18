@@ -35,7 +35,7 @@ public_tweets = api.search('Trump')
 '''
 
 with open('sentiment_polarity.csv', 'w') as csvfile:
-	polaritywriter = csv.writer(csvfile, delimiter=',',quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+	polaritywriter = csv.writer(csvfile, delimiter=',',quotechar='.', quoting=csv.QUOTE_MINIMAL)
         polaritywriter.writerow( ('Tweet', 'Sentiment') )
 	for tweet in public_tweets:
 	    print(tweet.text)
